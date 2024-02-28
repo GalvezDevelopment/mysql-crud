@@ -1,4 +1,4 @@
-import { Controller, HttpException, HttpStatus, Post } from '@nestjs/common';
+import { Body, Controller, HttpException, HttpStatus, Post } from '@nestjs/common';
 import { LoginDto } from '../dto/login.dto';
 
 @Controller('auth')
