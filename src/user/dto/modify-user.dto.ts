@@ -1,6 +1,6 @@
-import { User } from "src/shared/interfaces/user/user.interface";
+import { CreateUserDto } from "./create-user.dto";
 
 export class ModifyUserDto {
     id: string;
-    user: Omit<User, 'id' | 'email'>;
+    user: Omit<CreateUserDto, 'id' | 'email'>;
 }

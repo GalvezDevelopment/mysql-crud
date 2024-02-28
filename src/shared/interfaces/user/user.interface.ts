@@ -4,5 +4,5 @@ export interface User {
     lastName: string;
     male: boolean;
     email: string;
-    password: string;
+    password?: string;
 }
