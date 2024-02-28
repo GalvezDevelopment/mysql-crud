@@ -9,16 +9,16 @@ export class UserController {
     
     @Get()
     getUsers(): Promise<User[]> {
-        throw new HttpException('No users exist.', HttpStatus.NOT_FOUND);
+        throw new HttpException('No users exist.', HttpStatus.FORBIDDEN);
     }
 
     @Get(':id')
     getUser(@Query() id: string): Promise<User> {
-        throw new HttpException('User not found.', HttpStatus.NOT_FOUND);
+        throw new HttpException('User not found.', HttpStatus.FORBIDDEN);
     }
 
     @Patch()
     modifyUser(@Body() user: ModifyUserDto): Promise<User> {
-        throw new HttpException('User not found.', HttpStatus.NOT_FOUND);
+        throw new HttpException('User not found.', HttpStatus.FORBIDDEN);
     }
 }

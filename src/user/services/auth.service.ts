@@ -11,7 +11,7 @@ export class AuthService {
 
     constructor(private jwt: JwtService) {}
 
-    async registerUser(createUser: CreateUserDto): Promise<User[]> {
+    async registerUser(createUser: CreateUserDto): Promise<User> {
         const hashedPwd = await this.encodePwd(createUser.password);
         const { name, lastName, email } = createUser;
         const newUser = { name, lastName, email, password: hashedPwd } as User;

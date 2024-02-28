@@ -1,7 +1,6 @@
 import { CanActivate, ExecutionContext, Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { Observable } from 'rxjs';
-import { jwtConstants } from 'src/constants/jwt.constants';
+import { jwtConstants } from '../../../constants/jwt.constants';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
