@@ -1,13 +1,15 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
-import { User } from 'src/shared/interfaces/user/user.interface';
+import { InjectRepository } from '@nestjs/typeorm';
+import { User } from '../../shared/interfaces/user/user.interface';
+import { Repository } from 'typeorm';
 import { ModifyUserDto } from '../dto/modify-user.dto';
 
 @Injectable()
 export class UserService {
-    constructor() {}
+    constructor(@InjectRepository(User) private _userRepository: Repository<User>) {}
 
     getAll(): Promise<User[]> {
-        throw new HttpException('Getting Users functionality not available yet', HttpStatus.FORBIDDEN);
+        return this._userRepository.find();
     }
 
     getById(): Promise<User> {

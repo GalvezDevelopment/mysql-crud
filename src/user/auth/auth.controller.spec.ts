@@ -1,10 +1,15 @@
 import { JwtModule } from '@nestjs/jwt';
 import { Test, TestingModule } from '@nestjs/testing';
-import { User } from 'src/shared/interfaces/user/user.interface';
+import { getRepositoryToken } from '@nestjs/typeorm';
+import { BcryptService } from '../../shared/custom-providers/bcrypt.service';
+import { User } from '../../shared/interfaces/user/user.interface';
 import { CreateUserDto } from '../dto/create-user.dto';
 import { LoginDto } from '../dto/login.dto';
 import { AuthService } from '../services/auth.service';
 import { AuthController } from './auth.controller';
+
+
+const mockRepository = {};
 
 describe('AuthController', () => {
   let controller: AuthController;
@@ -13,9 +18,17 @@ describe('AuthController', () => {
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       controllers: [AuthController],
-      providers: [AuthService],
+      providers: [
+        AuthService, 
+        BcryptService,
+        {
+          provide: getRepositoryToken(User),
+          useValue: mockRepository
+        }
+      ],
       imports: [JwtModule]
-    }).compile();
+    })
+    .compile();
 
     authSrv = module.get<AuthService>(AuthService);
     controller = module.get<AuthController>(AuthController);
